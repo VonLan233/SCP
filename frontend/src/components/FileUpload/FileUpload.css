@@ -1,0 +1,190 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: white;
+  border-radius: 0.5rem;
+  width: 100%;
+  max-width: 32rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.modal-header h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #6b7280;
+}
+
+.close-button:hover {
+  color: #1f2937;
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input[type="file"] {
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  margin-bottom: 0.5rem;
+}
+
+.help-text {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.error-text {
+  font-size: 0.875rem;
+  color: #dc2626;
+  margin-top: 0.5rem;
+}
+
+.success-text {
+  font-size: 0.875rem;
+  color: #059669;
+  margin-top: 0.5rem;
+}
+
+.requirements-list {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+.requirements-list li {
+  margin-bottom: 0.25rem;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+/* 在 FileUpload.css 中添加以下样式 */
+
+/* 上传标签页样式 */
+.upload-tabs {
+  display: flex;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.upload-tab {
+  padding: 10px 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;
+  margin-right: 5px;
+  position: relative;
+}
+
+.upload-tab.active {
+  color: #4f46e5;
+  border-bottom: 2px solid #4f46e5;
+}
+
+.upload-tab:hover {
+  color: #4f46e5;
+}
+
+/* 模板下载样式 */
+.template-download {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.template-download a {
+  color: #4f46e5;
+  text-decoration: underline;
+}
+
+/* 仪表盘下拉菜单样式 */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-toggle {
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-icon {
+  margin-left: 5px;
+  font-size: 10px;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  min-width: 160px;
+  padding: 5px 0;
+  margin: 2px 0 0;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+}
+
+.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 8px 15px;
+  clear: both;
+  font-weight: 400;
+  text-align: left;
+  white-space: nowrap;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #f8f9fa;
+  color: #4f46e5;
+}

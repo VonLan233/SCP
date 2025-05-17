@@ -1,0 +1,17 @@
+{
+  "defaultParameters": {
+    "timeSteps": 5,
+    "predictionSteps": 3,
+    "epochs": 100,
+    "batchSize": 32,
+    "confidenceInterval": 95
+  },
+  "availableModels": [
+    "LSTM",
+    "GRU",
+    "Ensemble"
+  ],
+  "currentModel": "LSTM",
+  "lastTrainedAt": null,
+  "accuracy": null
+}

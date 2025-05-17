@@ -1,0 +1,68 @@
+version: '3'
+
+services:
+  # MySQL数据库服务
+  mysql:
+    image: mysql:8.0
+    container_name: student-scores-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: student_scores
+      MYSQL_USER: scoreuser
+      MYSQL_PASSWORD: scorepass
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-ppassword"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # Python LSTM预测服务
+  python-service:
+    build:
+      context: ./python-service
+      dockerfile: Dockerfile.python
+    container_name: student-scores-python
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./python-service:/app
+      - model-data:/app/models
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Java Spring Boot后端
+  java-backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: student-scores-backend
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/student_scores?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8
+      - SPRING_DATASOURCE_USERNAME=scoreuser
+      - SPRING_DATASOURCE_PASSWORD=scorepass
+      - PYTHON_PREDICT_URL=http://python-service:5000
+    depends_on:
+      mysql:
+        condition: service_healthy
+      python-service:
+        condition: service_started
+
+volumes:
+  mysql-data:
+  model-data:
